@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UAS WebGIS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Google Font -->
+
+
+  <!-- Leaflet & Plugin CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.locatecontrol@0.81.0/dist/L.Control.Locate.min.css" />
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.4.0/src/easy-button.css" />
+
+  <script src="https://unpkg.com/esri-leaflet"></script>
+
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffffff;
+  color: #333;
+  }
+
+/* Header dan Navigasi */
+#navbar {
+  background-color: #004643;
+  color: #fefae0;
+  padding: 16px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.logo {
+  display: flex;
+  font-family: 'Montserrat', serif;
+  align-items: center;
+}
+.logo img {
+  width: 60px;
+  margin-right: 10px;
+}
+.logo h1 {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+  color: #fefae0;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+nav ul li a {
+  color: #fefae0;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+nav ul li a:hover {
+  background-color: #2a9d8f;
+}
+
+/* Hero Section */
+.hero-section {
+  margin-top: 80px;
+  background-image: url('https://getlost.id/wp-content/uploads/2021/10/tugu_1986129362.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 120vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+.hero-content {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 40px;
+  border-radius: 10px;
+  max-width: 800px;
+}
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+.hero-content p {
+  font-size: 18px;
+}
+  main {
+      text-align: center;
+  margin: 4rem 0 2rem; /* Ditambah margin atas dan bawah */
+  padding-top: 1.5rem; /* Tambah padding agar tidak tertutup navbar */
+  font-size: 1.8rem;
+  color: #144d53;
+  font-weight: 700;
+}
+
+  #map {
+    height: 500px;
+    width: 100%;
+    max-width: 700px;
+    margin: 2rem auto;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border: 3px solid #144d53;
+    
+  }
+
+  /* Added styles for centered headings */
+  #map-section h2, .section-title {
+    text-align: center;
+    margin: 2rem 0 1rem;
+    font-size: 1.8rem;
+    color: #144d53;
+    font-weight: 700;
+  }
+
+  
+/* Data Section Styles */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.8rem;
+  padding: 2rem 1rem;
+}
+
+.card {
+  background: #ffffff;
+  border: 2px solid #144d53;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.card img {
+  width: 100%;
+  height: 240px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card img:hover {
+  transform: scale(1.03);
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+  color: #144d53;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-subtitle {
+  font-size: 0.95rem;
+      color: #297975;
+      line-height: 1.6;
+    }
+
+
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background: #144d53;
+    color: #fefae0;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    nav ul {
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+  }
+</style>
+</head>
+
+<body>
+<header id="navbar">
+    <div class="container">
+        <div class="logo">
+            <img src="asset/picture/logo pontianak.png" alt="Logo" width="100">
+            <h1>WEBGIS KOTA PONTIANAK</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="map.html">Map and Data</a></li>
+                <li><a href="author.html">Author</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+  <!-- Map Section -->
+  <h2 class="section-title">Peta Interaktif Rekomendasi Wisata Kota Pontianak</h2>
+  <div id="map"></div>
+
+</main>
+
+<!-- Data Section -->
+    <section aria-label="Featured playlists">
+      <h2 class="section-title">Berikut Wisata Rekomendasi</h2>
+      <div class="card-grid" role="list">
+        <div class="card" role="listitem" tabindex="0" aria-label="All Out 2010s playlist">
+          <img src="Asset/picture/tugu khatulistiwa.jpg" alt="Tugu Khatulistiwa" />
+          <div class="card-title">Taman Khatulistiwa</div>
+          <div class="card-subtitle">Taman Khatulistiwa yang berada di Desa Siantan, Pontianak Utara, merupakan monumen garis khatulistiwa yang menandai titik nol lintang bumi. Di tempat ini, terdapat museum yang menyimpan koleksi sejarah. Selain itu, ada pula taman dengan gazebo dan beragam wahana permainan untuk anak. Hal tersebut membuat Taman Khatulistiwa bisa jadi salah satu destinasi pas untuk berlibur bersama keluarga.
+          </div>
+        </div>
+        <div class="card" role="listitem" tabindex="0" aria-label="Peaceful Piano playlist">
+          <img src="Asset/picture/keraton kadriah.jpg" alt="Istana Kadriah" />
+          <div class="card-title">Istana Kadriah</div>
+          <div class="card-subtitle">Istana yang dibangun pada 1771 ini menyimpan berbagai koleksi sejarah dan budaya. Ada pusaka, pakaian adat, keris, hingga foto-foto para sultan. Dengan berkunjung ke istana ini, kamu bisa belajar mengenai sejarah Pontianak sembari melihat keindahan Sungai Kapuas karena letaknya yang berdekatan. Lokasi Istana Kadriah ada di Jalan Tj. Raya 1, Dalam Bugis, Kecamatan Pontianak TImur, Kota Pontianak. Jam operasionalnya setiap hari pukul 10.00-17.00 WIB.
+          </div>
+        </div>
+        <div class="card" role="listitem" tabindex="0" aria-label="All Out 2010s playlist">
+          <img src="Asset/picture/alunalunkapuas.jpeg" alt="All Out 2010s album cover" />
+          <div class="card-title">Alun-alun Kapuas</div>
+          <div class="card-subtitle">
+            Taman yang berada di pinggir Sungai Kapuas ini memiliki beragam daya tarik. Salah satunya air mancur indah yang terlihat berwarna-warni pada malam hari. Selain itu, ada pula Tugu Khatulistiwa yang jadi kebanggan masyarakat Kalimantan Barat. Pengunjung yang datang ke taman ini dapat melihat kapal-kapal yang melintasi Sungai Kapuas. Bahkan, bisa pula menikmati beragam kuliner Pontianak yang dijajakan di sekitarnya
+          </div>
+        </div>
+        <div class="card" role="listitem" tabindex="0" aria-label="Beast Mode playlist">
+          <img src="Asset/picture/digulis.jpeg" alt="Beast Mode cover" />
+          <div class="card-title">Taman Digulis</div>
+          <div class="card-subtitle">Taman Tugu Digulis Untan di Jalan Ayani 1 Pontianak Tenggara, Kalimantan Barat, merupakan salah satu destinasi taman yang sering dikunjungi wisatawan. Di pagi hari banyak juga warga setempat ataupun pendatang yang berjalan-jalan kaki atau jogging sambil menikmati taman yang bersih dan cantik yang tidak jauh dari Universitas Tanjungpura, Pontianak.
+          </div>
+        </div>
+        <div class="card" role="listitem" tabindex="0" aria-label="Beast Mode playlist">
+          <img src="Asset/picture/rumah radank.jpeg" alt="Beast Mode cover" />
+          <div class="card-title">Rumah Radank</div>
+          <div class="card-subtitle">Rumah ini merupakan rumah adat masyarakat Dayak yang kini mulai jarang terlihat. Terlepas dari itu, Rumah Radakng dinobatkan sebagai rumah adat terpanjang di Indonesia oleh MURI. Panjang rumah adat ini mencapai 138 meter dengan tinggi 7 meter. </div>
+        </div>
+        <div class="card" role="listitem" tabindex="0" aria-label="Beast Mode playlist">
+          <img src="Asset/picture/masjid mujahidin.jpg" alt="Beast Mode cover" />
+          <div class="card-title">Masjid Mujahidin</div>
+          <div class="card-subtitle">Bagimu yang muslim, bisa mampir ke Masjid Raya Mujahidin yang merupakan masjid terbesar di Pontianak. Kamu bisa beribadah sembari menikmati kemegahan arsitektur masjid ini. Menariknya, masjid ini punya menara setinggi 63 meter yang jadi lambang kemerdekaan Indonesia. Alamat Masjid Raya Mujahidin di Jalan Jendral Ahmad Yani, Akcaya, Kecamatan Pontianak Selatan, Kota Pontianak.</div>
+        </div>
+        <div class="card" role="listitem" tabindex="0" aria-label="Beast Mode playlist">
+          <img src="Asset/picture/waterfront.jpeg" alt="Beast Mode cover" />
+          <div class="card-title">Waterfront</div>
+          <div class="card-subtitle">Tempat ini menawarkan pemandangan indah kota serta sungai lengkap dengan berbagai fasilitas hiburan hingga kuliner. Kamu bisa jalan-jalan sambil berfoto di spot instagramable yang disediakan. Setelah capek berkeliling, silakan mampir di restoran maupun warung kaki lima yang ada di sana, cicipi berbagai kuliner khas Pontianak yang lezat untuk melengkapi wisatamu.</div>
+        </div>
+        <div class="card" role="listitem" tabindex="0" aria-label="Beast Mode playlist">
+          <img src="Asset/picture/museum.jpeg" alt="Beast Mode cover" />
+          <div class="card-title">Museum Provinsi Kalimantan Barat</div>
+          <div class="card-subtitle">Museum yang berada di Kota Pontianak ini menyimpan berbagai peninggalan sejarah yang bernilai. Di museum ini ada peninggalan dari berbagai jenis suku yang tinggal di Kalimantan Barat, tepatnya Suku Dayak, Melayu, hingga Tionghoa.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; UAS WebGIS - Ihsan Abdullah.
+  </footer>
+
+    <!-- Leaflet & Plugin JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.locatecontrol@0.81.0/dist/L.Control.Locate.min.js"></script>
+  <script src="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js"></script>
+  <script src="https://unpkg.com/leaflet-easybutton@2.4.0/src/easy-button.js"></script>
+
+  <script>
+// Inisialisasi peta
+const map = L.map('map').setView([-0.020855, 109.33384], 13);
+
+// Basemap Google Satellite
+const baseMapSatellite = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+  maxZoom: 20,
+  attribution: 'Satellite by <a href="https://maps.google.com/">Google</a>',
+  subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+});
+
+baseMapSatellite.addTo(map);
+
+const baseMaps = {
+  "Google Satellite": baseMapSatellite
+};
+
+// Koordinat posisi awal (kembali ke view awal)
+const home = { lat: -0.020855, lng: 109.33384, zoom: 13 };
+
+// Tambahkan tombol "Home" dengan simbol 🏠 yang dibungkus HTML
+L.easyButton('<span style="font-size: 18px;">🏠</span>', function(btn, map) {
+  map.setView([home.lat, home.lng], home.zoom);
+}, 'Kembali ke Home').addTo(map);
+
+// Fitur "My Location"
+L.control.locate({
+  position: 'topleft',
+  flyTo: true,
+  strings: {
+    title: "Temukan lokasiku"
+  },
+  locateOptions: {
+    enableHighAccuracy: true
+  }
+}).addTo(map);
+
+// Tombol Fullscreen
+    map.addControl(new L.Control.Fullscreen());
+
+    
+
+var symbologyPoint = { 
+  radius: 5, 
+  fillColor: "#9dfc03", 
+  color: "#000", 
+  weight: 1, 
+  opacity: 1, 
+  fillOpacity: 0.8 
+} 
+// Marker Wisata
+    L.marker([  0.001011, 109.322206]).addTo(map)
+      .bindPopup('<b>Taman Khatulistiwa</b><br>Pontianak');
+
+    L.marker([  -0.028649, 109.349646]).addTo(map)
+      .bindPopup('<b>Istana Kadriah</b><br>Pontianak');
+
+    L.marker([   -0.021236, 109.339552]).addTo(map)
+      .bindPopup('<b>Alun-alun Kapuas</b><br>Pontianak');
+
+    L.marker([   -0.055243, 109.349927]).addTo(map)
+      .bindPopup('<b>Taman Digulis</b><br>Pontianak');
+
+    L.marker([   -0.047179, 109.319210]).addTo(map)
+      .bindPopup('<b>Rumah Radank</b><br>Pontianak');
+
+    L.marker([   -0.041677, 109.336761]).addTo(map)
+      .bindPopup('<b>Masjid Mujahidin</b><br>Pontianak');
+
+    L.marker([   -0.032805, 109.347874]).addTo(map)
+      .bindPopup('<b>Waterfront</b><br>Pontianak');
+
+    L.marker([   -0.048317, 109.343056]).addTo(map)
+      .bindPopup('<b>Museum Kalimantan Barat</b><br>Pontianak');
+
+
+      
+
+</script>
+
+  
+</body>
+</html>
