@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Author - WebGIS Cianjur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #fffef0, #dcefe6);
+      color: #2f2f2f;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+/* Header dan Navigasi */
+header {
+  background-color: #004643;
+  color: #fefae0;
+  padding: 16px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrat', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fefae0;
+}
+
+.logo img {
+  width: 60px;
+  margin-right: 10px;
+}
+
+.logo h1 {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+  color: #fefae0;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  color: #fefae0;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: #2a9d8f;
+  color: #fefae0;
+}
+
+    main {
+      flex-grow: 1;
+      padding: 3rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #144d53;
+    }
+
+    .profile-picture {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #ffcc00;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      margin-bottom: 1rem;
+    }
+
+    .author-name h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #144d53;
+    }
+
+    .author-content p {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #144d53;
+      color: #fffef0;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header id="navbar">
+    <div class="container">
+        <div class="logo">
+            <img src="asset/picture/logo pontianak.png" alt="Logo" width="100">
+            <h1>WEBGIS KOTA PONTIANAK</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="map.html">Map and Data</a></li>
+                <li><a href="author.html">Author</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+  <main>
+    <h2>Tentang Pembuat</h2>
+    <img src="asset/picture/Ihsan Abdullah (1).JPG" alt="Foto Ihsan Abdullah" class="profile-picture" />
+    <div class="author-name">
+      <h3>Ihsan Abdullah</h3>
+    </div>
+    <p>Ihsan Abdullah adalah seorang mahasiswa Sains Informasi Geografi. Dengan NIM 2304199, saat ini sedang menjalani semester 4 dan mendalami pengembangan sistem WebGIS sebagai bagian dari pembelajaran teknologi geospasial.</p>
+  </main>
+
+  <footer>
+    <p>Contact: <a href="mailto:ihsanabdullah@upi.edu">ihsanabdullah@upi.edu</a></p>
+  </footer>
+</body>
+</html>

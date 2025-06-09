@@ -1,0 +1,226 @@
+
+/* Style Kerangka Secara Umum */
+html {
+  scroll-behavior: smooth;
+  font-family: 'Poppins', sans-serif;
+  caret-color: transparent;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;
+  color: #333;
+}
+
+/* Header dan Navigasi */
+#navbar {
+  background-color: #004643;
+  color: #fefae0;
+  padding: 16px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  width: 60px;
+  margin-right: 10px;
+}
+.logo h1 {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+  color: #fefae0;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+nav ul li a {
+  color: #fefae0;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+nav ul li a:hover {
+  background-color: #2a9d8f;
+}
+
+/* Hero Section */
+.hero-section {
+  margin-top: 80px;
+  background-image: url('https://getlost.id/wp-content/uploads/2021/10/tugu_1986129362.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 120vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+.hero-content {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 40px;
+  border-radius: 10px;
+  max-width: 800px;
+}
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+.hero-content p {
+  font-size: 18px;
+}
+
+/* Map Section */ 
+#map { 
+    width: 60%; 
+    height: 500px; 
+    background-color: lightgray; 
+    margin: 40px auto; /* Adjusted margin for space */ 
+    border: 2px solid #ccc; /* Add a border with a subtle color */ 
+    border-radius: 10px; 
+    overflow: hidden; 
+    position: relative; /* Relative positioning for child elements */ 
+    z-index: 1; /* Set z-index to be behind the header */ 
+} 
+ 
+#map-section h2 { 
+    text-align: center; 
+    margin-top: 20; 
+    font-size: 28px; 
+    margin-bottom: 20px; 
+} 
+
+ /* Data Section Styles */
+/* Data Section */
+#data-section {
+    background-color: #fefae0;
+    padding: 60px 20px;
+}
+
+#data-section h2 {
+    text-align: center;
+    color: #2a9d8f; /* Hijau zamrud */
+    margin-bottom: 40px;
+}
+
+#data-section h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #2a9d8f; /* hijau zamrud Pontianak */
+    font-family: 'Poppins', sans-serif;
+}
+
+.column {
+    flex: 0 0 calc(33.33% - 20px);
+    max-width: calc(33.33% - 20px);
+    margin-bottom: 40px;
+}
+
+.data-item {
+    background-color: #2a9d8f;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow: hidden;
+    margin: 20px;
+    transition: transform 0.3s ease;
+}
+
+.data-item:hover {
+    transform: scale(1.05);
+}
+
+.data-item img {
+    width: 100%;
+    height: auto;
+}
+.description { 
+padding: 20px; 
+height: 500px; 
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+} 
+.description h3 { 
+margin-top: 0; 
+font-size: 24px; 
+} 
+.description p { 
+color: #E8EBD2; 
+font-size: 16px; 
+}
+
+/* Author Section */ 
+#author-section { 
+    background-color: #0077ff; 
+    padding: 40px 20px; 
+    font-family: 'Montserrat', sans-serif;
+    color: #E8EBD2; 
+    text-align: justify; 
+} 
+ 
+.author-content { 
+    max-width: 800px; 
+    margin: 0 auto; 
+} 
+ 
+.author-content h2 { 
+    text-align: center; 
+} 
+ 
+.author-name { 
+    text-align: center; /* Center-align only the author's name */ 
+} 
+ 
+.profile-picture { 
+    height: 100px; 
+    width: auto; 
+    border-radius: 50%; 
+    margin: 0 auto 20px; /* Center the picture horizontally and add margin at the bottom */ 
+    display: block; /* Ensure it behaves as a block element */ 
+} 
+ 
+#footer { 
+    background-color: #d2d3eb; 
+    color: #d9d2eb; 
+    text-align: center; 
+    padding: 20px; 
+    font-family: 'Montserrat', sans-serif; 
+    flex-shrink: 0; 
+} 
+
+.legend { 
+    padding: 6px 8px; 
+    background-color: rgba(255, 255, 255, 0.881); 
+    box-shadow: 0 0 15px rgba(0,0,0,0.2); 
+    border-radius: 5px; 
+} 
+.legend div { 
+    width: 30px; 
+    height: 5px; 
+    float: left; 
+    margin-right: 8px; 
+    opacity: 0.5; 
+} 
