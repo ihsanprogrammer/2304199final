@@ -1,0 +1,4 @@
+{
+  "type" : "FeatureCollection",
+  "features" : [{"type":"Feature","id":1,"geometry":{"type":"Point","coordinates":[109.32220563000004,0.0010109620000662289]},"properties":{"OID":1,"Name":"Tugu Khatulistiwa","FolderPath":"wisata pontianak.kml/wisata pontianak","SymbolID":0,"AltMode":-1,"Base":0,"Snippet":"","PopupInfo":"","HasLabel":-1,"LabelID":0}},{"type":"Feature","id":2,"geometry":{"type":"Point","coordinates":[109.34964625300006,-0.028648541999928057]},"properties":{"OID":2,"Name":"Keraton Kadriyah","FolderPath":"wisata pontianak.kml/wisata pontianak","SymbolID":0,"AltMode":-1,"Base":0,"Snippet":"","PopupInfo":"","HasLabel":-1,"LabelID":0}},{"type":"Feature","id":3,"geometry":{"type":"Point","coordinates":[109.33676059800007,-0.04167725099995323]},"properties":{"OID":3,"Name":"Masjid Agung Muhahidin","FolderPath":"wisata pontianak.kml/wisata pontianak","SymbolID":0,"AltMode":-1,"Base":0,"Snippet":"","PopupInfo":"","HasLabel":-1,"LabelID":0}}]
+}
